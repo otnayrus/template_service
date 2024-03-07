@@ -1,11 +1,13 @@
-setup:
-	cp .env.example .env
+install:
 	npm install -g yarn
 	yarn install
-	go install github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen@latest
+	go mod vendor
 
 run-local-client:
 	yarn dev
 
 run-local-server:
 	cd ./api/cmd && go run main.go
+
+migrate:
+	mysql -u root -p < .dev/migrations/001-database.sql

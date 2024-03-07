@@ -25,7 +25,11 @@ func (r *Repository) CreateUser(ctx context.Context, input *dto.User) (int, erro
 
 	// insert to users
 	var id int
-	_, err = r.Db.ExecContext(ctx, createUserQuery, input.Name, input.Email, input.Password)
+	result, err := r.Db.ExecContext(ctx, createUserQuery, input.Name, input.Email, input.Password)
+	if err != nil {
+		return 0, errorwrapper.WrapErr(errorwrapper.ErrInternalServer, err.Error())
+	}
+	insertedID, err := result.LastInsertId()
 	if err != nil {
 		return 0, errorwrapper.WrapErr(errorwrapper.ErrInternalServer, err.Error())
 	}
@@ -38,7 +42,7 @@ func (r *Repository) CreateUser(ctx context.Context, input *dto.User) (int, erro
 	}
 
 	// insert to users_roles
-	_, err = r.Db.ExecContext(ctx, createUserRoleQuery, id, roleID)
+	_, err = r.Db.ExecContext(ctx, createUserRoleQuery, insertedID, roleID)
 	if err != nil {
 		return 0, errorwrapper.WrapErr(errorwrapper.ErrInternalServer, err.Error())
 	}
