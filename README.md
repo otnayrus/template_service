@@ -29,3 +29,5 @@ Project directory structure:
     - app: contains the main app component, routes should follow the directory structure inside this folder
     - components: contains reusable components
     - fetch: contains the fetch function for making requests to the server
+
+Code is runnable on local using node version `20.0`. If you have any issues running the project, kindly try to use similar environment.
