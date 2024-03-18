@@ -1,11 +1,9 @@
 import MainContent from "@/components/MainContent"
 import Sidebar from "@/components/Sidebar"
-import SidebarButton from "@/components/SidebarButton"
 
 export default function Home() {
   return (
     <main>
-      <SidebarButton />
       <Sidebar />
 
       <MainContent>

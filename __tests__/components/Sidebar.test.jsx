@@ -7,7 +7,7 @@ describe("Sidebar", () => {
     render(<Sidebar />)
 
     // Check if specific links are present in the rendered sidebar
-    const usersLink = screen.getByText("Users")
+    const usersLink = screen.getByText("Roles & Access")
     const signInLink = screen.getByText("Sign In")
     const signUpLink = screen.getByText("Sign Up")
 
